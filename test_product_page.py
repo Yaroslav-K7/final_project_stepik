@@ -10,4 +10,3 @@ def test_guest_can_add_product_to_basket(browser):
     page.go_to_buy_book()
     page.solve_quiz_and_get_code()
     page.should_be_all_text_about_add_to_basket()
-

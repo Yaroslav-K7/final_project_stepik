@@ -30,7 +30,9 @@ class BooksPage(BasePage):
             "Text about price book incorrect"
 
     def product_name(self):
-        return self.browser.find_element(*BasketPageLocators.NAME_OF_PRODUCT)
+        return self.browser.find_element(*BasketPageLocators.NAME_OF_PRODUCT).text
 
     def product_price(self):
-        return self.browser.find_element(*BasketPageLocators.PRICE_OF_PRODUCT)
+        return self.browser.find_element(*BasketPageLocators.PRICE_OF_PRODUCT).text
+
+
