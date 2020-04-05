@@ -2,7 +2,7 @@ from .base_page import BasePage
 from .locators import BasketPageLocators
 
 
-class BooksPage(BasePage):
+class ProductPage(BasePage):
     def go_to_buy_book(self):
         link = self.browser.find_element(*BasketPageLocators.ADD_TO_BASKET)
         link.click()
@@ -24,8 +24,8 @@ class BooksPage(BasePage):
         self.text_about_price(self.product_price())
 
     def text_add_to_basket(self, name):
-        assert self.is_element_present(*BasketPageLocators.TEXT_ADD_TO_BASKET_BOOK), "Adding message isn't presented"
-        text_add_to_basket = self.browser.find_element(*BasketPageLocators.TEXT_ADD_TO_BASKET_BOOK).text
+        assert self.is_element_present(*BasketPageLocators.SUCCESS_MESSAGE), "Adding message isn't presented"
+        text_add_to_basket = self.browser.find_element(*BasketPageLocators.SUCCESS_MESSAGE).text
         assert text_add_to_basket == f"{name} has been added to your basket.", \
             "Text about add book incorrect"
 
@@ -34,3 +34,14 @@ class BooksPage(BasePage):
         text_price_basket = self.browser.find_element(*BasketPageLocators.TEXT_ADD_TO_BASKET_PRICE).text
         assert text_price_basket == f"Your basket total is now {price}", \
             "Text about price book incorrect"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*BasketPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*BasketPageLocators.SUCCESS_MESSAGE), \
+            "Success message should be disappeared, but isn't"
+
+
+
